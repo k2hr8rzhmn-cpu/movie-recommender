@@ -6,6 +6,13 @@
 """
 import os, json, pickle, time, re
 import numpy as np
+
+# numpy 版本兼容：pickle 在 numpy 2.x 生成，兼容 numpy 1.x
+import sys
+if not hasattr(np, '_core') and hasattr(np, 'core'):
+    sys.modules['numpy._core'] = np.core
+    np._core = np.core
+
 import scipy.sparse as sp
 from sklearn.preprocessing import normalize
 from flask import Flask, render_template, jsonify, request
@@ -62,9 +69,12 @@ print(f'  电影类型: {len(genre_movies)} 种')
 svd_data = None
 svd_path = os.path.join(DATA_DIR, 'svd_features.pkl')
 if os.path.exists(svd_path):
-    with open(svd_path, 'rb') as f:
-        svd_data = pickle.load(f)
-    print(f'  SVD 模型: {len(svd_data.get("user_factors", []))} 个活跃用户')
+    try:
+        with open(svd_path, 'rb') as f:
+            svd_data = pickle.load(f)
+        print(f'  SVD 模型: {len(svd_data.get("user_factors", []))} 个活跃用户')
+    except Exception as e:
+        print(f'  SVD 模型加载失败（{e}），将禁用 SVD 推荐')
 
 # 8. 电影标签和内容关键词（从 movie_content.csv）
 movie_tags = {}
