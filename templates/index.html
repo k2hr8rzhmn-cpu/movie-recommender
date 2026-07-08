@@ -1160,15 +1160,29 @@
     // ===== Similar Movies =====
     async function showSimilar(movieId) {
         closeModal();
+        // 确保切换到推荐页面，否则 resultsSection 不可见
+        showPage('recommend');
         document.getElementById('loadingText').textContent = '正在查找相似电影...';
         document.getElementById('loading').classList.add('show');
         document.getElementById('resultsSection').classList.add('hidden');
+        document.getElementById('emptyState').style.display = 'none';
         try {
             const res = await fetch('/api/similar?movie_id=' + movieId);
             const data = await res.json();
             document.getElementById('loading').classList.remove('show');
-            displayResults({ user_id: '相似 (种子: ' + movieId + ')', model: 'Content-Based 相似度', count: data.count, elapsed: '-', recommendations: data.recommendations });
-        } catch(e) { document.getElementById('loading').classList.remove('show'); alert('请求失败: ' + e.message); }
+            if (!data.recommendations || data.recommendations.length === 0) {
+                document.getElementById('resultsSection').classList.add('hidden');
+                document.getElementById('emptyState').style.display = 'block';
+                document.getElementById('emptyState').innerHTML = '<div class="icon">🎬</div><p>未找到该电影的相似电影（可能不在推荐数据库中）</p>';
+            } else {
+                displayResults({ user_id: '相似 (种子: ' + movieId + ')', model: 'Content-Based 相似度', count: data.count, elapsed: '-', recommendations: data.recommendations });
+                // 滚动到结果区域
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        } catch(e) {
+            document.getElementById('loading').classList.remove('show');
+            alert('查找相似电影失败: ' + e.message);
+        }
     }
 
     // ===== Movie Detail Modal =====
