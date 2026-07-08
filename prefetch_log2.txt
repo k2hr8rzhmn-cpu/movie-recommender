@@ -1,0 +1,261 @@
+已有缓存: 20 部电影
+需要获取 240 部电影详情
+其中 227 部需要新获取
+[6/240] Star Wars: Episode IV - A New Hope (1977)... -> 豆瓣无结果 wmdb失败 OK
+[7/240] The Matrix (1999)... -> 豆瓣无结果 wmdb失败 OK
+[12/240] Star Wars: Episode VI - Return of the Jedi (1983)... -> 豆瓣无结果 wmdb失败 OK
+[13/240] Terminator 2: Judgment Day (1991)... -> 豆瓣无结果 wmdb失败 OK
+[16/240] Star Wars: Episode V - The Empire Strikes Back (1980)... -> 豆瓣无结果 wmdb失败 OK
+[17/240] Raiders of the Lost Ark (Indiana Jones and the Raiders of the Lost Ark) (1981)... -> 豆瓣无结果 wmdb失败 OK
+[18/240] Independence Day (a.k.a. ID4) (1996)... -> 豆瓣无结果 wmdb失败 OK
+[21/240] American Beauty (1999)... -> 美国丽人 +简介 OK
+[22/240] Twelve Monkeys (a.k.a. 12 Monkeys) (1995)... -> 豆瓣无结果 wmdb失败 OK
+[23/240] True Lies (1994)... -> 真实的谎言 +简介 OK
+  [已保存 23 条]
+[24/240] Back to the Future (1985)... -> 回到未来 +简介 OK
+[25/240] The Godfather (1972)... -> 教父 +简介 OK
+[26/240] Aladdin (1992)... -> 阿拉丁 +简介 OK
+[27/240] Fight Club (1999)... -> 搏击俱乐部 +简介 OK
+[28/240] Fargo (1996)... -> 冰血暴 +简介 OK
+[29/240] The Lord of the Rings: The Fellowship of the Ring (2001)... -> 豆瓣无结果 wmdb失败 OK
+[30/240] Seven (a.k.a. Se7en) (1995)... -> 豆瓣无结果 wmdb失败 OK
+[31/240] Ace Ventura: Pet Detective (1994)... -> 豆瓣无结果 wmdb失败 OK
+[32/240] Saving Private Ryan (1998)... -> 拯救大兵瑞恩 +简介 OK
+[33/240] Speed (1994)... -> 生死时速 +简介 OK
+  [已保存 33 条]
+[34/240] The Sixth Sense (1999)... -> 第六感 +简介 OK
+[35/240] The Lord of the Rings: The Two Towers (2002)... -> 豆瓣无结果 wmdb失败 OK
+[36/240] Mission: Impossible (1996)... -> 碟中谍 +简介 OK
+[37/240] The Lion King (1994)... -> 狮子王 +简介 OK
+[38/240] The Lord of the Rings: The Return of the King (2003)... -> 豆瓣无结果 wmdb失败 OK
+[39/240] Beauty and the Beast (1991)... -> 美女与野兽 +简介 OK
+[40/240] Die Hard: With a Vengeance (1995)... -> 豆瓣无结果 wmdb失败 OK
+[41/240] Batman Forever (1995)... -> 永远的蝙蝠侠 +简介 OK
+[42/240] Gladiator (2000)... -> 角斗士 +简介 OK
+[43/240] Titanic (1997)... -> 泰坦尼克号 +简介 OK
+  [已保存 43 条]
+[44/240] Men in Black (a.k.a. MIB) (1997)... -> 豆瓣无结果 wmdb失败 OK
+[45/240] Shrek (2001)... -> 怪物史瑞克 +简介 OK
+[46/240] The Princess Bride (1987)... -> 公主新娘 +简介 OK
+[47/240] Twister (1996)... -> 龙卷风 +简介 OK
+[48/240] Dumb & Dumber (Dumb and Dumber) (1994)... -> 豆瓣无结果 wmdb失败 OK
+[49/240] Stargate (1994)... -> 星际之门 +简介 OK
+[50/240] The Terminator (1984)... -> 终结者 +简介 OK
+[51/240] E.T. the Extra-Terrestrial (1982)... -> E.T. the Extra-Terrestrial: 20th Anniversary Celebration +简介 OK
+[52/240] Clear and Present Danger (1994)... -> 燃眉追击 +简介 OK
+[53/240] The Mask (1994)... -> 变相怪杰 +简介 OK
+  [已保存 53 条]
+[54/240] One Flew Over the Cuckoo's Nest (1975)... -> 飞越疯人院 +简介 OK
+[55/240] Mrs. Doubtfire (1993)... -> 窈窕奶爸 +简介 OK
+[56/240] Indiana Jones and the Last Crusade (1989)... -> 夺宝奇兵3 +简介 OK
+[57/240] Monty Python and the Holy Grail (1975)... -> 巨蟒与圣杯 +简介 OK
+[58/240] Babe (1995)... -> 小猪宝贝 +简介 OK
+[59/240] Pretty Woman (1990)... -> 漂亮女人 +简介 OK
+[60/240] Groundhog Day (1993)... -> 土拨鼠之日 +简介 OK
+[61/240] Memento (2000)... -> 记忆碎片 +简介 OK
+[62/240] The Rock (1996)... -> 勇闯夺命岛 +简介 OK
+[63/240] Star Wars: Episode I - The Phantom Menace (1999)... -> Star Wars: Episode I - The Phantom Menace - Webisodes wmdb失败 OK
+  [已保存 63 条]
+[64/240] Alien (1979)... -> 异形 +简介 OK
+[65/240] Die Hard (1988)... -> 豆瓣无结果 wmdb失败 OK
+[66/240] The Godfather: Part II (1974)... -> 豆瓣无结果 wmdb失败 OK
+[67/240] Blade Runner (1982)... -> 豆瓣无结果 wmdb失败 OK
+[68/240] GoldenEye (1995)... -> 豆瓣无结果 wmdb失败 OK
+[69/240] Good Will Hunting (1997)... -> 豆瓣无结果 wmdb失败 OK
+[70/240] Ghostbusters (a.k.a. Ghost Busters) (1984)... -> 豆瓣无结果 wmdb失败 OK
+[71/240] Willy Wonka & the Chocolate Factory (1971)... -> 豆瓣无结果 wmdb失败 OK
+[72/240] L.A. Confidential (1997)... -> 豆瓣无结果 wmdb失败 OK
+[73/240] Star Trek: Generations (1994)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 73 条]
+[74/240] The Fifth Element (1997)... -> 豆瓣无结果 wmdb失败 OK
+[75/240] Reservoir Dogs (1992)... -> 豆瓣无结果 wmdb失败 OK
+[76/240] Goodfellas (1990)... -> 豆瓣无结果 wmdb失败 OK
+[77/240] Aliens (1986)... -> 豆瓣无结果 +简介 OK
+[78/240] X-Men (2000)... -> 豆瓣无结果 wmdb失败 OK
+[79/240] Waterworld (1995)... -> 豆瓣无结果 wmdb失败 OK
+[80/240] Interview with the Vampire: The Vampire Chronicles (1994)... -> 豆瓣无结果 wmdb失败 OK
+[81/240] Ghost (1990)... -> 豆瓣无结果 +简介 OK
+[82/240] Being John Malkovich (1999)... -> 豆瓣无结果 wmdb失败 OK
+[83/240] Pirates of the Caribbean: The Curse of the Black Pearl (2003)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 83 条]
+[84/240] Sleepless in Seattle (1993)... -> 豆瓣无结果 wmdb失败 OK
+[85/240] Léon: The Professional (a.k.a. The Professional) (Léon) (1994)... -> 豆瓣无结果 wmdb失败 OK
+[86/240] Amelie (Fabuleux destin d'Amélie Poulain, Le) (2001)... -> 豆瓣无结果 wmdb失败 OK
+[87/240] Outbreak (1995)... -> 豆瓣无结果 wmdb失败 OK
+[88/240] Rain Man (1988)... -> 豆瓣无结果 wmdb失败 OK
+[89/240] Taxi Driver (1976)... -> 豆瓣无结果 wmdb失败 OK
+[90/240] Four Weddings and a Funeral (1994)... -> 豆瓣无结果 wmdb失败 OK
+[91/240] The Dark Knight (2008)... -> 豆瓣无结果 wmdb失败 OK
+[92/240] Monsters, Inc. (2001)... -> 豆瓣无结果 wmdb失败 OK
+[93/240] Cliffhanger (1993)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 93 条]
+[94/240] Home Alone (1990)... -> 豆瓣无结果 wmdb失败 OK
+[95/240] Casablanca (1942)... -> 豆瓣无结果 wmdb失败 OK
+[96/240] Crouching Tiger, Hidden Dragon (Wo hu cang long) (2000)... -> 豆瓣无结果 wmdb失败 OK
+[97/240] Finding Nemo (2003)... -> 豆瓣无结果 wmdb失败 OK
+[98/240] Minority Report (2002)... -> 豆瓣无结果 wmdb失败 OK
+[99/240] 2001: A Space Odyssey (1968)... -> 豆瓣无结果 wmdb失败 OK
+[100/240] American History X (1998)... -> 豆瓣无结果 wmdb失败 OK
+[101/240] Toy Story 2 (1999)... -> 豆瓣无结果 wmdb失败 OK
+[102/240] A Bug's Life (1998)... -> 豆瓣无结果 wmdb失败 OK
+[103/240] The Incredibles (2004)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 103 条]
+[104/240] Who Framed Roger Rabbit? (1988)... -> 豆瓣无结果 wmdb失败 OK
+[105/240] The Nightmare Before Christmas (1993)... -> 豆瓣无结果 wmdb失败 OK
+[106/240] South Park: Bigger, Longer and Uncut (1999)... -> 豆瓣无结果 wmdb失败 OK
+[107/240] Snow White and the Seven Dwarfs (1937)... -> 豆瓣无结果 wmdb失败 OK
+[108/240] Chicken Run (2000)... -> 豆瓣无结果 wmdb失败 OK
+[109/240] Spirited Away (Sen to Chihiro no kamikakushi) (2001)... -> 豆瓣无结果 wmdb失败 OK
+[110/240] Wallace & Gromit: The Wrong Trousers (1993)... -> 豆瓣无结果 wmdb失败 OK
+[111/240] Shrek 2 (2004)... -> 豆瓣无结果 wmdb失败 OK
+[112/240] WALL·E (2008)... -> 豆瓣无结果 wmdb失败 OK
+[113/240] The Little Mermaid (1989)... -> 豆瓣无结果 +简介 OK
+  [已保存 113 条]
+[114/240] The Wizard of Oz (1939)... -> 豆瓣无结果 +简介 OK
+[115/240] Jumanji (1995)... -> 豆瓣无结果 wmdb失败 OK
+[116/240] Addams Family Values (1993)... -> 豆瓣无结果 wmdb失败 OK
+[117/240] Harry Potter and the Sorcerer's Stone (a.k.a. Harry Potter and the Philosopher's Stone) (2001)... -> 豆瓣无结果 wmdb失败 OK
+[118/240] Indiana Jones and the Temple of Doom (1984)... -> 豆瓣无结果 wmdb失败 OK
+[119/240] Edward Scissorhands (1990)... -> 豆瓣无结果 wmdb失败 OK
+[120/240] Clueless (1995)... -> 豆瓣无结果 +简介 OK
+[121/240] There's Something About Mary (1998)... -> 豆瓣无结果 wmdb失败 OK
+[122/240] The Shining (1980)... -> 豆瓣无结果 wmdb失败 OK
+[123/240] Jaws (1975)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 123 条]
+[124/240] The Blair Witch Project (1999)... -> 豆瓣无结果 wmdb失败 OK
+[125/240] Psycho (1960)... -> 豆瓣无结果 +简介 OK
+[126/240] The Mummy (1999)... -> 豆瓣无结果 +简介 OK
+[127/240] Scream (1996)... -> 豆瓣无结果 +简介 OK
+[128/240] Arachnophobia (1990)... -> 豆瓣无结果 wmdb失败 OK
+[129/240] Alien³ (a.k.a. Alien 3) (1992)... -> 豆瓣无结果 wmdb失败 OK
+[130/240] The Rocky Horror Picture Show (1975)... -> 豆瓣无结果 wmdb失败 OK
+[131/240] Species (1995)... -> 豆瓣无结果 wmdb失败 OK
+[132/240] The Exorcist (1973)... -> 豆瓣无结果 wmdb失败 OK
+[133/240] Army of Darkness (1993)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 133 条]
+[134/240] From Dusk Till Dawn (1996)... -> 豆瓣无结果 wmdb失败 OK
+[135/240] Sleepy Hollow (1999)... -> 豆瓣无结果 wmdb失败 OK
+[136/240] Shaun of the Dead (2004)... -> 豆瓣无结果 wmdb失败 OK
+[137/240] The Bourne Identity (2002)... -> 豆瓣无结果 wmdb失败 OK
+[138/240] Inception (2010)... -> 豆瓣无结果 wmdb失败 OK
+[139/240] Donnie Darko (2001)... -> 豆瓣无结果 wmdb失败 OK
+[140/240] Citizen Kane (1941)... -> 豆瓣无结果 wmdb失败 OK
+[141/240] Rear Window (1954)... -> 豆瓣无结果 wmdb失败 OK
+[142/240] North by Northwest (1959)... -> 豆瓣无结果 wmdb失败 OK
+[143/240] The Game (1997)... -> 豆瓣无结果 +简介 OK
+  [已保存 143 条]
+[144/240] Chinatown (1974)... -> 豆瓣无结果 wmdb失败 OK
+[145/240] Sin City (2005)... -> 豆瓣无结果 wmdb失败 OK
+[146/240] Batman Begins (2005)... -> 豆瓣无结果 wmdb失败 OK
+[147/240] The Matrix Reloaded (2003)... -> 豆瓣无结果 wmdb失败 OK
+[148/240] Star Wars: Episode II - Attack of the Clones (2002)... -> 豆瓣无结果 wmdb失败 OK
+[149/240] V for Vendetta (2006)... -> 豆瓣无结果 wmdb失败 OK
+[150/240] Spider-Man 2 (2004)... -> 豆瓣无结果 wmdb失败 OK
+[151/240] Harry Potter and the Prisoner of Azkaban (2004)... -> 豆瓣无结果 wmdb失败 OK
+[152/240] The Matrix Revolutions (2003)... -> 豆瓣无结果 wmdb失败 OK
+[153/240] Avatar (2009)... -> 豆瓣无结果 +简介 OK
+  [已保存 153 条]
+[154/240] 300 (2007)... -> 豆瓣无结果 +简介 OK
+[155/240] Harry Potter and the Goblet of Fire (2005)... -> 豆瓣无结果 wmdb失败 OK
+[156/240] Star Trek (2009)... -> 豆瓣无结果 wmdb失败 OK
+[157/240] Interstellar (2014)... -> 豆瓣无结果 wmdb失败 OK
+[158/240] Charlie and the Chocolate Factory (2005)... -> 豆瓣无结果 wmdb失败 OK
+[159/240] The Dark Knight Rises (2012)... -> 豆瓣无结果 wmdb失败 OK
+[160/240] Toy Story 3 (2010)... -> 豆瓣无结果 wmdb失败 OK
+[161/240] Bowling for Columbine (2002)... -> 豆瓣无结果 wmdb失败 OK
+[162/240] Hoop Dreams (1994)... -> 豆瓣无结果 wmdb失败 OK
+[163/240] Fahrenheit 9/11 (2004)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 163 条]
+[164/240] Roger & Me (1989)... -> 豆瓣无结果 wmdb失败 OK
+[165/240] Super Size Me (2004)... -> 大号的我 +简介 OK
+[166/240] Crumb (1994)... -> 克鲁伯 +简介 OK
+[167/240] When We Were Kings (1996)... -> 一代拳王 +简介 OK
+[168/240] Jackass: The Movie (2002)... -> 豆瓣无结果 wmdb失败 OK
+[169/240] Buena Vista Social Club (1999)... -> 乐士浮生录 +简介 OK
+[170/240] Spellbound (2002)... -> 爱德华大夫 +简介 OK
+[171/240] The Thin Blue Line (1988)... -> 细细的蓝线 +简介 OK
+[172/240] Koyaanisqatsi (a.k.a. Koyaanisqatsi: Life Out of Balance) (1983)... -> 豆瓣无结果 wmdb失败 OK
+[173/240] The Fog of War: Eleven Lessons from the Life of Robert S. McNamara (2003)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 173 条]
+[174/240] March of the Penguins (Marche de l'empereur, La) (2005)... -> 豆瓣无结果 wmdb失败 OK
+[175/240] Stop Making Sense (1984)... -> 别假正经 +简介 OK
+[176/240] An Inconvenient Truth (2006)... -> 难以忽视的真相 +简介 OK
+[177/240] Eddie Murphy Raw (1987)... -> 豆瓣无结果 wmdb失败 OK
+[178/240] Touching the Void (2003)... -> 冰峰168小时 +简介 OK
+[179/240] American Movie (1999)... -> 导演狂想曲 +简介 OK
+[180/240] Microcosmos (Microcosmos: Le peuple de l'herbe) (1996)... -> 豆瓣无结果 wmdb失败 OK
+[181/240] Crimson Tide (1995)... -> 红潮风暴 +简介 OK
+[182/240] Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1964)... -> 奇爱博士 +简介 OK
+[183/240] Apocalypse Now (1979)... -> 现代启示录 +简介 OK
+  [已保存 183 条]
+[184/240] Full Metal Jacket (1987)... -> 全金属外壳 +简介 OK
+[185/240] Life Is Beautiful (La Vita è bella) (1997)... -> 豆瓣无结果 wmdb失败 OK
+[186/240] Gone with the Wind (1939)... -> 乱世佳人 +简介 OK
+[187/240] Legends of the Fall (1994)... -> 燃情岁月 +简介 OK
+[188/240] Platoon (1986)... -> 野战排 +简介 OK
+[189/240] The English Patient (1996)... -> 豆瓣无结果 wmdb失败 OK
+[190/240] Boot, Das (Boat, The) (1981)... -> 豆瓣无结果 wmdb失败 OK
+[191/240] Lawrence of Arabia (1962)... -> 豆瓣无结果 wmdb失败 OK
+[192/240] The Patriot (2000)... -> 豆瓣无结果 wmdb失败 OK
+[193/240] Hot Shots! Part Deux (1993)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 193 条]
+[194/240] Glory (1989)... -> 豆瓣无结果 +简介 OK
+[195/240] M*A*S*H (a.k.a. MASH) (1970)... -> 豆瓣无结果 wmdb失败 OK
+[196/240] Rob Roy (1995)... -> 豆瓣无结果 wmdb失败 OK
+[197/240] The Blues Brothers (1980)... -> 豆瓣无结果 wmdb失败 OK
+[198/240] Grease (1978)... -> 豆瓣无结果 +简介 OK
+[199/240] Pocahontas (1995)... -> 豆瓣无结果 wmdb失败 OK
+[200/240] Mary Poppins (1964)... -> 豆瓣无结果 wmdb失败 OK
+[201/240] The Sound of Music (1965)... -> 豆瓣无结果 wmdb失败 OK
+[202/240] Pinocchio (1940)... -> 豆瓣无结果 wmdb失败 OK
+[203/240] Fantasia (1940)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 203 条]
+[204/240] Moulin Rouge (2001)... -> 豆瓣无结果 wmdb失败 OK
+[205/240] The Hunchback of Notre Dame (1996)... -> 豆瓣无结果 wmdb失败 OK
+[206/240] Back to the Future Part III (1990)... -> 豆瓣无结果 wmdb失败 OK
+[207/240] Maverick (1994)... -> 豆瓣无结果 wmdb失败 OK
+[208/240] Butch Cassidy and the Sundance Kid (1969)... -> 豆瓣无结果 wmdb失败 OK
+[209/240] Good, the Bad and the Ugly, The (Buono, il brutto, il cattivo, Il) (1966)... -> 豆瓣无结果 wmdb失败 OK
+[210/240] Desperado (1995)... -> 豆瓣无结果 wmdb失败 OK
+[211/240] Tombstone (1993)... -> 豆瓣无结果 wmdb失败 OK
+[212/240] Unforgiven (1992)... -> 豆瓣无结果 wmdb失败 OK
+[213/240] City Slickers II: The Legend of Curly's Gold (1994)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 213 条]
+[214/240] The Last of the Mohicans (1992)... -> 豆瓣无结果 wmdb失败 OK
+[215/240] Blazing Saddles (1974)... -> 豆瓣无结果 wmdb失败 OK
+[216/240] Wild Wild West (1999)... -> 豆瓣无结果 wmdb失败 OK
+[217/240] Shanghai Noon (2000)... -> 豆瓣无结果 wmdb失败 OK
+[218/240] Django Unchained (2012)... -> 豆瓣无结果 wmdb失败 OK
+[219/240] City Slickers (1991)... -> 豆瓣无结果 wmdb失败 OK
+[220/240] Young Guns (1988)... -> 豆瓣无结果 wmdb失败 OK
+[221/240] ¡Three Amigos! (1986)... -> 豆瓣无结果 wmdb失败 OK
+[222/240] The Quick and the Dead (1995)... -> 豆瓣无结果 wmdb失败 OK
+[223/240] Lone Star (1996)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 223 条]
+[224/240] The Maltese Falcon (1941)... -> 豆瓣无结果 wmdb失败 OK
+[225/240] Dark City (1998)... -> 豆瓣无结果 wmdb失败 OK
+[226/240] Mulholland Drive (2001)... -> 豆瓣无结果 wmdb失败 OK
+[227/240] Sunset Blvd. (a.k.a. Sunset Boulevard) (1950)... -> 豆瓣无结果 wmdb失败 OK
+[228/240] The Third Man (1949)... -> 豆瓣无结果 wmdb失败 OK
+[229/240] The Grifters (1990)... -> 豆瓣无结果 wmdb失败 OK
+[230/240] Miller's Crossing (1990)... -> 豆瓣无结果 wmdb失败 OK
+[231/240] The Big Sleep (1946)... -> 豆瓣无结果 wmdb失败 OK
+[232/240] Strangers on a Train (1951)... -> 豆瓣无结果 wmdb失败 OK
+[233/240] Blood Simple (1984)... -> 豆瓣无结果 wmdb失败 OK
+  [已保存 233 条]
+[234/240] Notorious (1946)... -> 豆瓣无结果 +简介 OK
+[235/240] Double Indemnity (1944)... -> 豆瓣无结果 wmdb失败 OK
+[236/240] Touch of Evil (1958)... -> 豆瓣无结果 wmdb失败 OK
+[237/240] M (1931)... -> 豆瓣无结果 +简介 OK
+[238/240] Lost Highway (1997)... -> 豆瓣无结果 wmdb失败 OK
+[239/240] Devil in a Blue Dress (1995)... -> 豆瓣无结果 wmdb失败 OK
+[240/240] Drive (2011)... -> 豆瓣无结果 +简介 OK
+
+========== 预取完成 ==========
+总计缓存: 240 部电影
+本次新获取: 227
+跳过(已有): 13
+有中文名: 81 (33%)
+有海报: 81 (33%)
+有简介: 80 (33%)
+有豆瓣评分: 65 (27%)
