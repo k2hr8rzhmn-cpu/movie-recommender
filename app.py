@@ -724,31 +724,43 @@ def api_model_results():
 
 @app.route('/api/onboarding_movies', methods=['GET'])
 def api_onboarding_movies():
-    """新用户引导：返回多样化热门电影（偏好2000年后）"""
+    """新用户引导：返回多样化热门电影（偏好2000年后），支持 exclude 排除已展示"""
     import random
+    # 接收前端传来的已展示电影 ID，避免"换一批"时重复
+    exclude_str = request.args.get('exclude', '')
+    exclude_ids = set()
+    if exclude_str:
+        try:
+            exclude_ids = set(int(x) for x in exclude_str.split(',') if x.strip())
+        except ValueError:
+            pass
+
     target_genres = ['Action', 'Comedy', 'Drama', 'Sci-Fi', 'Romance',
                      'Thriller', 'Animation', 'Adventure', 'Crime', 'Fantasy']
     selected = []
-    seen_ids = set()
+    seen_ids = set(exclude_ids)  # 把已展示的加入 seen_ids，自动跳过
 
     for genre in target_genres:
         if genre not in genre_movies:
             continue
         # 优先选2000年后的电影
         candidates = []
-        for mid in genre_movies[genre][:30]:
+        for mid in genre_movies[genre][:50]:
+            if mid in seen_ids:
+                continue
             info = get_movie_info(mid)
             if info.get('year', 0) >= 2000:
                 candidates.append(mid)
         # 不足则补充2000年前的
         if len(candidates) < 3:
-            for mid in genre_movies[genre][:20]:
-                if mid not in candidates:
-                    candidates.append(mid)
+            for mid in genre_movies[genre][:30]:
+                if mid in seen_ids or mid in candidates:
+                    continue
+                candidates.append(mid)
                 if len(candidates) >= 5:
                     break
 
-        picks = random.sample(candidates, min(2, len(candidates)))
+        picks = random.sample(candidates, min(2, len(candidates))) if candidates else []
         for mid in picks:
             if mid in seen_ids:
                 continue
@@ -759,16 +771,15 @@ def api_onboarding_movies():
         if len(selected) >= 18:
             break
 
-    # 不足时从2000年后的热门电影补充
+    # 不足时从热门电影补充
     if len(selected) < 12:
         for pm in popular_movies:
             if pm['movieId'] in seen_ids:
                 continue
-            if pm.get('year', 0) >= 2000:
-                selected.append(_build_movie_record(pm['movieId'], pm.get('score', 0), ''))
-                seen_ids.add(pm['movieId'])
-                if len(selected) >= 18:
-                    break
+            selected.append(_build_movie_record(pm['movieId'], pm.get('score', 0), ''))
+            seen_ids.add(pm['movieId'])
+            if len(selected) >= 18:
+                break
 
     return jsonify({'movies': selected, 'total': len(selected)})
 

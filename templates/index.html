@@ -687,6 +687,7 @@
     let allGenres = [];
     let userRatings = {};
     let onboardingMovies = [];
+    let shownMovieIds = new Set();  // 记录所有已展示的电影 ID，避免"换一批"重复
     let addRatingMovies = [];
     let addRatings = {};
 
@@ -831,6 +832,8 @@
         document.getElementById('newUserPanel').classList.toggle('hidden', mode !== 'new');
 
         if (mode === 'new' && onboardingMovies.length === 0) {
+            shownMovieIds = new Set();
+            userRatings = {};
             loadOnboardingMovies();
         }
 
@@ -848,13 +851,22 @@
     async function loadOnboardingMovies() {
         const grid = document.getElementById('onboardingGrid');
         grid.innerHTML = '<div style="text-align:center; padding: 40px; color: #666;">正在挑选电影...</div>';
-        userRatings = {};
+        // 不清空 userRatings，保留之前批次的评分
         updateRatingProgress();
         try {
-            const res = await fetch('/api/onboarding_movies');
+            // 把已展示的电影 ID 传给后端排除
+            const excludeParam = Array.from(shownMovieIds).join(',');
+            const url = '/api/onboarding_movies' + (excludeParam ? '?exclude=' + excludeParam : '');
+            const res = await fetch(url);
             const data = await res.json();
             onboardingMovies = data.movies;
-            renderOnboardingMovies();
+            // 记录本批次展示的电影 ID
+            onboardingMovies.forEach(m => shownMovieIds.add(m.movieId));
+            if (onboardingMovies.length === 0) {
+                grid.innerHTML = '<div style="text-align:center; padding: 40px; color: #666;">已经展示完所有精选电影了，请直接提交评价获取推荐</div>';
+            } else {
+                renderOnboardingMovies();
+            }
         } catch(e) {
             grid.innerHTML = '<div style="text-align:center; padding: 40px; color: #e94560;">加载失败: ' + e.message + '</div>';
         }
