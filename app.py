@@ -67,10 +67,9 @@ if os.path.exists(svd_path):
     print(f'  SVD 模型: {len(svd_data.get("user_factors", []))} 个活跃用户')
 
 # 8. 电影标签和内容关键词（从 movie_content.csv）
-MODEL_DIR = r'c:/Users/18433/WorkBuddy/20260629093110/model_code/模型过程_王雅萱/7-6任务交付__Content-Based 推荐_王雅萱'
 movie_tags = {}
 movie_content_text = {}
-mc_path = os.path.join(MODEL_DIR, 'movie_content.csv')
+mc_path = os.path.join(DATA_DIR, 'movie_content.csv')
 if os.path.exists(mc_path):
     mc_df = pd.read_csv(mc_path, usecols=['movieId', 'tags_text', 'content'])
     for _, row in mc_df.iterrows():
