@@ -6,13 +6,6 @@
 """
 import os, json, pickle, time, re
 import numpy as np
-
-# numpy 版本兼容：pickle 在 numpy 2.x 生成，兼容 numpy 1.x
-import sys
-if not hasattr(np, '_core') and hasattr(np, 'core'):
-    sys.modules['numpy._core'] = np.core
-    np._core = np.core
-
 import scipy.sparse as sp
 from sklearn.preprocessing import normalize
 from flask import Flask, render_template, jsonify, request
@@ -65,16 +58,21 @@ with open(os.path.join(DATA_DIR, 'genre_movies.json'), 'r', encoding='utf-8') as
     genre_movies = json.load(f)
 print(f'  电影类型: {len(genre_movies)} 种')
 
-# 7. SVD 模型
+# 7. SVD 模型（部署环境 numpy 版本不兼容时跳过加载）
 svd_data = None
 svd_path = os.path.join(DATA_DIR, 'svd_features.pkl')
 if os.path.exists(svd_path):
-    try:
-        with open(svd_path, 'rb') as f:
-            svd_data = pickle.load(f)
-        print(f'  SVD 模型: {len(svd_data.get("user_factors", []))} 个活跃用户')
-    except Exception as e:
-        print(f'  SVD 模型加载失败（{e}），将禁用 SVD 推荐')
+    # 检查 numpy 版本：pickle 在 numpy 2.x 生成，numpy 1.x 加载会段错误
+    np_major = int(np.__version__.split('.')[0])
+    if np_major >= 2:
+        try:
+            with open(svd_path, 'rb') as f:
+                svd_data = pickle.load(f)
+            print(f'  SVD 模型: {len(svd_data.get("user_factors", []))} 个活跃用户')
+        except Exception as e:
+            print(f'  SVD 模型加载失败（{e}），将禁用 SVD 推荐')
+    else:
+        print(f'  SVD 模型: 跳过加载（numpy {np.__version__} < 2.0，pickle 不兼容），Hybrid 将回退到 Content-Based')
 
 # 8. 电影标签和内容关键词（从 movie_content.csv）
 movie_tags = {}
