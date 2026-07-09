@@ -20,7 +20,7 @@ movie_recommender/
 │   ├── genre_movies.json      # 19 种类型的电影索引
 │   ├── tfidf_matrix.npz       # TF-IDF 矩阵 (34208×5000)
 │   ├── movie_to_idx.pkl       # movieId → 行索引映射
-│   └── svd_features.pkl       # 微型 SVD 模型 (1000用户×20维)
+│   └── svd_features_k30.pkl   # 微型 SVD 模型 (1000用户×30维)
 ├── templates/
 │   └── index.html         # 前端页面
 └── test_api.py            # API 测试脚本

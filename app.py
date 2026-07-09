@@ -60,7 +60,7 @@ print(f'  电影类型: {len(genre_movies)} 种')
 
 # 7. SVD 模型（部署环境 numpy 版本不兼容时跳过加载）
 svd_data = None
-svd_path = os.path.join(DATA_DIR, 'svd_features.pkl')
+svd_path = os.path.join(DATA_DIR, 'svd_features_k30.pkl')
 if os.path.exists(svd_path):
     # 检查 numpy 版本：pickle 在 numpy 2.x 生成，numpy 1.x 加载会段错误
     np_major = int(np.__version__.split('.')[0])
@@ -768,7 +768,7 @@ def api_model_results():
             {'name': '热门推荐', 'label': 'Popular (基线)', 'precision': 0.0433, 'recall': 0.0632, 'ndcg': 0.0645, 'color': '#95a5a6'},
             {'name': '全局均值', 'label': 'Global Avg (基线)', 'precision': 0.0, 'recall': 0.0, 'ndcg': 0.0, 'color': '#bdc3c7'},
             {'name': 'Content-Based', 'label': 'Content-Based', 'precision': 0.0443, 'recall': 0.0535, 'ndcg': 0.0648, 'color': '#3498db'},
-            {'name': 'SVD', 'label': 'SVD', 'precision': 0.0633, 'recall': 0.1007, 'ndcg': 0.0977, 'color': '#e74c3c'},
+            {'name': 'SVD', 'label': 'SVD (k=30)', 'precision': 0.0633, 'recall': 0.1007, 'ndcg': 0.0977, 'color': '#e74c3c'},
             {'name': 'Hybrid α=0.5', 'label': 'Hybrid (α=0.5)', 'precision': 0.073, 'recall': 0.1033, 'ndcg': 0.1095, 'color': '#2ecc71'},
             {'name': 'Hybrid α=0.7', 'label': 'Hybrid (α=0.7 最优)', 'precision': 0.076, 'recall': 0.1104, 'ndcg': 0.1122, 'color': '#f1c40f'},
         ],
