@@ -855,10 +855,13 @@
             posterHtml = '<div class="poster-fallback"><div class="pf-icon">🎬</div><div class="pf-title">' + escapeHtml(cnTitle) + '</div><div class="pf-year">' + (movie.year > 0 ? movie.year : '') + '</div></div>';
         }
 
-        // Rating badge
+        // Rating badge: 豆瓣优先，无则用 MovieLens 均分换算到10分制
         var ratingBadge = '';
         if (movie.douban_rating && movie.douban_rating !== '') {
             ratingBadge = '<div class="rating-badge">⭐ ' + movie.douban_rating + '</div>';
+        } else if (score > 0) {
+            var mlRating = (score * 2).toFixed(1);
+            ratingBadge = '<div class="rating-badge" style="background:rgba(100,100,100,0.7);">⭐ ' + mlRating + '</div>';
         }
 
         // Overview
@@ -892,11 +895,6 @@
         '</div>';
     }
 
-    function escapeHtml(text) {
-        var div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
     function escapeHtml(text) {
         var div = document.createElement('div');
         div.textContent = text;
@@ -1281,8 +1279,11 @@
 
             // Poster
             if (data.poster_url) {
-                poster.innerHTML = '<img src="' + data.poster_url + '" onerror="this.parentElement.innerHTML=\'<div class=no-poster>🎬</div>\'">';
-            } else { poster.innerHTML = '<div class="no-poster">🎬</div>'; }
+                poster.innerHTML = '<img src="' + data.poster_url + '" onerror="this.style.display=\'none\'; document.getElementById(\'modalPosterFallback\').style.display=\'flex\';"><div id="modalPosterFallback" style="display:none;width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center;"><div style="font-size:50px;opacity:0.25;margin-bottom:12px;">🎬</div><div style="font-size:16px;color:#ddd;line-height:1.5;margin-bottom:6px;">' + escapeHtml(data.bilingual_title || data.title || '') + '</div><div style="font-size:13px;color:#777;">' + (data.year > 0 ? data.year : '') + '</div></div>';
+            } else {
+                var pTitle = data.bilingual_title || data.title || '';
+                poster.innerHTML = '<div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center;"><div style="font-size:50px;opacity:0.25;margin-bottom:12px;">🎬</div><div style="font-size:16px;color:#ddd;line-height:1.5;margin-bottom:6px;">' + escapeHtml(pTitle) + '</div><div style="font-size:13px;color:#777;">' + (data.year > 0 ? data.year : '') + '</div></div>';
+            }
 
             // Title
             var titleHtml = '';
@@ -1305,11 +1306,15 @@
             var genres = data.genres || [];
             infoHtml += '<div class="modal-genres">' + genres.map(g => '<span class="modal-genre">' + g + '</span>').join('') + '</div>';
 
-            // Ratings
-            if (data.douban_rating || data.imdb_rating) {
+            // Ratings: 豆瓣/IMDb优先，无则用 MovieLens 均分
+            var hasDouban = data.douban_rating && data.douban_rating !== '';
+            var hasImdb = data.imdb_rating && data.imdb_rating !== '';
+            var mlScore = data.score || 0;
+            if (hasDouban || hasImdb || mlScore > 0) {
                 infoHtml += '<div class="modal-rating-row">';
-                if (data.douban_rating) infoHtml += '<div class="modal-rating-box"><div class="val" style="color:#2ecc71;">' + data.douban_rating + '</div><div class="src">豆瓣</div></div>';
-                if (data.imdb_rating) infoHtml += '<div class="modal-rating-box"><div class="val" style="color:#f2a365;">' + data.imdb_rating + '</div><div class="src">IMDb</div></div>';
+                if (hasDouban) infoHtml += '<div class="modal-rating-box"><div class="val" style="color:#2ecc71;">' + data.douban_rating + '</div><div class="src">豆瓣</div></div>';
+                if (hasImdb) infoHtml += '<div class="modal-rating-box"><div class="val" style="color:#f2a365;">' + data.imdb_rating + '</div><div class="src">IMDb</div></div>';
+                if (!hasDouban && !hasImdb && mlScore > 0) infoHtml += '<div class="modal-rating-box"><div class="val" style="color:#aaa;">' + (mlScore * 2).toFixed(1) + '</div><div class="src">MovieLens</div></div>';
                 infoHtml += '</div>';
             }
 
