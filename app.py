@@ -104,6 +104,15 @@ if os.path.exists(CN_TITLES_PATH):
         cn_titles_map = json.load(f)
     print(f'  中文名映射: {len(cn_titles_map)} 部')
 
+# 9c. 统一电影后备数据（中文名、简介、海报、评分）
+ENRICHED_PATH = os.path.join(DATA_DIR, 'movie_enriched.json')
+movie_enriched = {}
+if os.path.exists(ENRICHED_PATH):
+    with open(ENRICHED_PATH, 'r', encoding='utf-8') as f:
+        movie_enriched = json.load(f)
+    print(f'  电影后备数据: {len(movie_enriched)} 部')
+
+
 # 10. 旧版 TMDB 缓存（兼容）
 TMDB_CACHE_PATH = os.path.join(DATA_DIR, 'tmdb_cache.json')
 tmdb_cache = {}
@@ -134,17 +143,26 @@ def _normalize_title(title):
         clean = 'An ' + clean[:-4]
     return clean
 
+def _get_enriched(movie_id):
+    """获取统一后备数据"""
+    mid_str = str(movie_id)
+    return movie_enriched.get(mid_str, {})
+
 def _get_chinese_title(movie_id):
-    """获取中文标题：优先详情缓存，其次独立映射"""
+    """获取中文标题：优先详情缓存，其次独立映射，最后后备数据"""
     mid_str = str(movie_id)
     # 1. 从详情缓存获取
     if mid_str in movie_details:
         cn = movie_details[mid_str].get('chinese_title', '')
         if cn and not cn.isascii():
             return cn
-    # 2. 从独立映射获取（不受缓存覆写影响）
+    # 2. 从独立映射获取（不受服务器缓存覆写影响）
     if mid_str in cn_titles_map:
         return cn_titles_map[mid_str]
+    # 3. 从统一后备数据获取（确保永不空白）
+    enriched = _get_enriched(movie_id)
+    if enriched.get('chinese_title') and not enriched['chinese_title'].isascii():
+        return enriched['chinese_title']
     return ''
 
 def _get_bilingual_title(movie_id):
@@ -164,6 +182,10 @@ def _get_movie_detail(movie_id):
     # 旧版 TMDB 缓存兼容
     if mid_str in tmdb_cache:
         return tmdb_cache[mid_str]
+    # 统一后备数据兜底
+    enriched = _get_enriched(movie_id)
+    if enriched:
+        return enriched
     return None
 
 def get_movie_info(movie_id):
@@ -178,8 +200,9 @@ def get_movie_info(movie_id):
 def _build_movie_record(movie_id, score=0, model=''):
     """构建带双语标题和详情的电影记录"""
     info = get_movie_info(movie_id)
-    detail = _get_movie_detail(movie_id)
-    
+    detail = _get_movie_detail(movie_id) or {}
+    enriched = _get_enriched(movie_id)
+
     record = {
         'movieId': movie_id,
         'title': info['title'],
@@ -189,32 +212,32 @@ def _build_movie_record(movie_id, score=0, model=''):
         'score': score,
         'model': model,
     }
-    
-    # 从详情缓存补充海报、简介、评分
+
+    # 分数后备：传入为 0 时，使用电影平均分/流行度得分
+    if score <= 0:
+        record['score'] = enriched.get('score', enriched.get('mean_rating', 0))
+        if record['score'] <= 0:
+            record['score'] = detail.get('score', 0)
+
+    # 详情字段优先级：detail 缓存 > enriched 后备
     cn_from_map = _get_chinese_title(movie_id)
-    if detail:
-        record['poster_url'] = detail.get('poster_url', '')
-        record['overview'] = detail.get('overview', '')
-        record['douban_rating'] = detail.get('douban_rating', '')
-        record['imdb_rating'] = detail.get('imdb_rating', '')
-        record['chinese_title'] = detail.get('chinese_title', '') or cn_from_map
-        record['douban_url'] = detail.get('douban_url', '')
-        record['genre_cn'] = detail.get('genre_cn', '')
-    else:
-        record['poster_url'] = ''
-        record['overview'] = ''
-        record['douban_rating'] = ''
-        record['chinese_title'] = cn_from_map
+    record['poster_url'] = detail.get('poster_url', '') or enriched.get('poster_url', '')
+    record['overview'] = detail.get('overview', '') or enriched.get('overview', '')
+    record['douban_rating'] = detail.get('douban_rating', '') or enriched.get('douban_rating', '')
+    record['imdb_rating'] = detail.get('imdb_rating', '') or enriched.get('imdb_rating', '')
+    record['chinese_title'] = detail.get('chinese_title', '') or cn_from_map or enriched.get('chinese_title', '')
+    record['douban_url'] = detail.get('douban_url', '') or enriched.get('douban_url', '')
+    record['genre_cn'] = detail.get('genre_cn', '') or enriched.get('genre_cn', '')
+
+    # 兜底豆瓣搜索链接
+    if not record['douban_url']:
         clean_title = _normalize_title(info['title'])
         record['douban_url'] = f'https://search.douban.com/movie/subject_search?search_text={urllib.parse.quote(clean_title)}&cat=1002'
-    
+
     # 本地标签
     record['tags'] = movie_tags.get(int(movie_id), [])
-    
+
     return record
-
-
-# ============ 推荐算法 ============
 
 def content_based_recommend(user_id, top_n=10):
     """实时内容推荐"""
@@ -660,6 +683,45 @@ def api_homepage():
 
 
 @app.route('/api/user_info', methods=['GET'])
+
+@app.route('/api/more_movies', methods=['GET'])
+def api_more_movies():
+    """加载更多电影：支持首页各区块分页"""
+    section = request.args.get('section', 'featured')  # featured, recent, genre
+    offset = request.args.get('offset', 0, type=int)
+    limit = request.args.get('limit', 12, type=int)
+
+    results = []
+    if section == 'featured':
+        # 按热门排序分页
+        start = min(offset, len(popular_movies))
+        end = min(offset + limit, len(popular_movies))
+        for pm in popular_movies[start:end]:
+            results.append(_build_movie_record(pm['movieId'], pm.get('score', 0), '热门'))
+    elif section == 'recent':
+        # 2000年后热门分页
+        recent_list = [pm for pm in popular_movies if pm.get('year', 0) >= 2000]
+        start = min(offset, len(recent_list))
+        end = min(offset + limit, len(recent_list))
+        for pm in recent_list[start:end]:
+            results.append(_build_movie_record(pm['movieId'], pm.get('score', 0), '近期热门'))
+    elif section == 'genre':
+        genre = request.args.get('genre', 'Action')
+        if genre in genre_movies:
+            ids = genre_movies[genre]
+            start = min(offset, len(ids))
+            end = min(offset + limit, len(ids))
+            for mid in ids[start:end]:
+                results.append(_build_movie_record(mid, 0, genre))
+
+    return jsonify({
+        'section': section,
+        'offset': offset,
+        'limit': limit,
+        'count': len(results),
+        'movies': results
+    })
+
 def api_user_info():
     """获取用户信息"""
     user_id = request.args.get('user_id', type=int)

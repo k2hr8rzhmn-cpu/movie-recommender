@@ -136,6 +136,18 @@
         .btn-success { background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); color: white; }
         .btn-success:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(46,204,113,0.4); }
         .btn-sm { padding: 8px 16px; font-size: 13px; }
+.btn-more {
+    margin-left: auto;
+    padding: 5px 13px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: #888;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-more:hover { background: rgba(255,255,255,0.12); color: #e0e0e0; border-color: rgba(255,255,255,0.2); }
 
         /* ===== Model Tabs ===== */
         .model-tabs { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
@@ -226,6 +238,15 @@
         .movie-poster { height: 280px; background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .movie-poster img { width: 100%; height: 100%; object-fit: cover; }
         .movie-poster .no-poster { font-size: 60px; opacity: 0.12; }
+.movie-poster .poster-fallback {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 20px; text-align: center;
+}
+.movie-poster .poster-fallback .pf-icon { font-size: 40px; opacity: 0.25; margin-bottom: 10px; }
+.movie-poster .poster-fallback .pf-title { font-size: 13px; color: #ddd; line-height: 1.4; margin-bottom: 6px; }
+.movie-poster .poster-fallback .pf-year { font-size: 11px; color: #777; }
         .movie-poster .rank { position: absolute; top: 10px; left: 10px; background: rgba(233,69,96,0.9); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; }
         .movie-poster .rating-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: #f2a365; padding: 3px 8px; border-radius: 6px; font-size: 12px; font-weight: bold; }
         .movie-body { padding: 14px; }
@@ -441,10 +462,11 @@
 
     <div id="homeContent" style="display:none;">
         <!-- Featured Movies -->
-        <div class="panel">
+        <div class="panel" id="featuredPanel">
             <div class="panel-title">
                 🔥 热门精选
                 <span class="hint">最受用户欢迎的电影</span>
+                <button class="btn-more" onclick="loadMoreMovies('featured')">更多电影</button>
             </div>
             <div class="movie-grid" id="featuredGrid"></div>
         </div>
@@ -454,6 +476,7 @@
             <div class="panel-title">
                 📅 近期热门
                 <span class="hint">2000年后的高人气电影</span>
+                <button class="btn-more" onclick="loadMoreMovies('recent')">更多电影</button>
             </div>
             <div class="movie-grid" id="recentGrid"></div>
         </div>
@@ -711,13 +734,18 @@
         }
     }
 
-    // ===== Homepage =====
+// ===== Homepage =====
+    let sectionOffsets = { featured: 12, recent: 6, genre: {} };
+
     async function loadHomepage() {
         try {
             const res = await fetch('/api/homepage');
             const data = await res.json();
             document.getElementById('homeLoading').classList.remove('show');
             document.getElementById('homeContent').style.display = 'block';
+
+            // 重置分页偏移
+            sectionOffsets = { featured: 12, recent: 6, genre: {} };
 
             // Featured
             document.getElementById('featuredGrid').innerHTML = data.featured.map((m, i) =>
@@ -740,7 +768,11 @@
             let genreHtml = '';
             for (const [genre, movies] of Object.entries(data.genre_picks)) {
                 const cnName = genreNames[genre] || genre;
-                genreHtml += `<div class="panel"><div class="panel-title">${cnName} ${genre}<span class="hint">类型精选</span></div><div class="movie-grid">${movies.map((m, i) => renderMovieCard(m, i)).join('')}</div></div>`;
+                sectionOffsets.genre[genre] = 6;
+                genreHtml += `<div class="panel" id="genrePanel-${genre}">
+                    <div class="panel-title">${cnName} ${genre}<span class="hint">类型精选</span><button class="btn-more" onclick="loadMoreMovies('genre', '${genre}')">更多电影</button></div>
+                    <div class="movie-grid" id="genreGrid-${genre}">${movies.map((m, i) => renderMovieCard(m, i)).join('')}</div>
+                </div>`;
             }
             document.getElementById('genrePicksContainer').innerHTML = genreHtml;
 
@@ -750,34 +782,77 @@
         }
     }
 
+    async function loadMoreMovies(section, genre) {
+        let url = '/api/more_movies?section=' + section + '&offset=';
+        let gridId = '';
+        let offset = 0;
+        if (section === 'featured') {
+            offset = sectionOffsets.featured;
+            gridId = 'featuredGrid';
+            url += offset;
+        } else if (section === 'recent') {
+            offset = sectionOffsets.recent;
+            gridId = 'recentGrid';
+            url += offset;
+        } else if (section === 'genre') {
+            offset = sectionOffsets.genre[genre] || 6;
+            gridId = 'genreGrid-' + genre;
+            url += offset + '&genre=' + encodeURIComponent(genre);
+        }
+
+        try {
+            const res = await fetch(url);
+            const data = await res.json();
+            if (!data.movies || data.movies.length === 0) {
+                alert('没有更多电影了');
+                return;
+            }
+            const grid = document.getElementById(gridId);
+            const currentCount = grid.children.length;
+            grid.innerHTML += data.movies.map((m, i) => renderMovieCard(m, currentCount + i)).join('');
+
+            // 更新偏移
+            if (section === 'featured') sectionOffsets.featured += data.count;
+            else if (section === 'recent') sectionOffsets.recent += data.count;
+            else if (section === 'genre') sectionOffsets.genre[genre] = (sectionOffsets.genre[genre] || 6) + data.count;
+        } catch(e) {
+            console.error('加载更多失败', e);
+            alert('加载更多失败: ' + e.message);
+        }
+    }
+
     // ===== Render Movie Card =====
     function renderMovieCard(movie, index) {
-        const scorePercent = movie.score ? Math.round(movie.score * 100) : 0;
+        const score = movie.score || 0;
+        const scorePercent = score ? Math.min(Math.round(score * 100), 100) : 0;
         const genres = (movie.genres || []).slice(0, 3).map(g => '<span class="genre-tag">' + g + '</span>').join('');
 
         // Bilingual title
         var titleHtml = '';
+        var cnTitle = '';
         if (movie.bilingual_title) {
             // Already in "中文名（英文名）" format
             var parts = movie.bilingual_title.split('（');
             if (parts.length >= 2) {
-                var cn = parts[0];
+                cnTitle = parts[0];
                 var en = parts[1].replace(/）/g, '');
-                titleHtml = '<div class="movie-title"><span class="cn">' + cn + '</span> <span class="en">' + en + '</span></div>';
+                titleHtml = '<div class="movie-title"><span class="cn">' + cnTitle + '</span> <span class="en">' + en + '</span></div>';
             } else {
+                cnTitle = movie.bilingual_title;
                 titleHtml = '<div class="movie-title"><span class="cn">' + movie.bilingual_title + '</span></div>';
             }
         } else {
             var cleanTitle = movie.title || '';
+            cnTitle = cleanTitle;
             titleHtml = '<div class="movie-title"><span class="cn">' + cleanTitle + '</span></div>';
         }
 
         // Poster
         var posterHtml = '';
         if (movie.poster_url) {
-            posterHtml = '<img src="' + movie.poster_url + '" alt="" onerror="this.style.display=\'none\'; this.parentElement.querySelector(\'.no-poster\').style.display=\'block\';"><div class="no-poster" style="display:none;">🎬</div>';
+            posterHtml = '<img src="' + movie.poster_url + '" alt="" onerror="this.style.display=\'none\'; this.parentElement.querySelector(\'.poster-fallback\').style.display=\'flex\';"><div class="poster-fallback" style="display:none;"><div class="pf-icon">🎬</div><div class="pf-title">' + escapeHtml(cnTitle) + '</div><div class="pf-year">' + (movie.year > 0 ? movie.year : '') + '</div></div>';
         } else {
-            posterHtml = '<div class="no-poster">🎬</div>';
+            posterHtml = '<div class="poster-fallback"><div class="pf-icon">🎬</div><div class="pf-title">' + escapeHtml(cnTitle) + '</div><div class="pf-year">' + (movie.year > 0 ? movie.year : '') + '</div></div>';
         }
 
         // Rating badge
@@ -794,11 +869,11 @@
 
         // Score bar
         var scoreHtml = '';
-        if (movie.score && movie.score > 0) {
+        if (score > 0) {
             scoreHtml = '<div class="movie-score">' +
                 '<span style="font-size: 11px; color: #888;">' + (movie.model || '') + '</span>' +
                 '<div class="score-bar"><div class="score-fill" style="width:' + scorePercent + '%"></div></div>' +
-                '<span class="score-value">' + movie.score.toFixed(4) + '</span></div>';
+                '<span class="score-value">' + score.toFixed(4) + '</span></div>';
         }
 
         return '<div class="movie-card" onclick="showMovieDetail(' + movie.movieId + ')">' +
@@ -817,6 +892,11 @@
         '</div>';
     }
 
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
     function escapeHtml(text) {
         var div = document.createElement('div');
         div.textContent = text;
